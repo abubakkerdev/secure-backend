@@ -127,12 +127,20 @@ const handleLoginUser = async (req, res) => {
               tokens: token,
             };
 
+            // res.cookie("userAllInfo", JSON.stringify(cookieValueObj), {
+            //   maxAge: 604800000,
+            //   secure: true,
+            //   priority: "high",
+            //   signed: true,
+            //   sameSite: "lax",
+            // });
+
             res.cookie("userAllInfo", JSON.stringify(cookieValueObj), {
-              maxAge: 604800000,
-              secure: true,
-              priority: "high",
-              signed: true,
-              sameSite: "lax",
+              maxAge: 604800000, // 7 days in milliseconds
+              secure: process.env.NODE_ENV === "production", // Secure cookies for production
+              signed: true, // Requires cookie-parser with a secret
+              sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Handle cross-origin in production
+              httpOnly: true,
             });
 
             return res.send({
@@ -205,11 +213,18 @@ const handleForgotPassword = async (req, res) => {
 
         res.cookie("forgotToken", JSON.stringify(cookieValueObj), {
           maxAge: 3600000,
-          secure: true,
-          priority: "high",
+          secure: process.env.NODE_ENV === "production", // Secure cookies for production
           signed: true,
-          sameSite: "lax",
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", 
+          httpOnly: true,
         });
+
+
+    
+     // Handle cross-origin in production
+  
+
+
 
         let emailFrom = "Change Password URL";
         let emailSubject = "Verify Email Address";
