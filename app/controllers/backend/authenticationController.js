@@ -136,10 +136,10 @@ const handleLoginUser = async (req, res) => {
             // });
 
             res.cookie("userAllInfo", JSON.stringify(cookieValueObj), {
-              maxAge: 604800000, // 7 days in milliseconds
-              secure: process.env.NODE_ENV === "production", // Secure cookies for production
-              signed: true, // Requires cookie-parser with a secret
-              sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Handle cross-origin in production
+              maxAge: 604800000,
+              secure: process.env.NODE_ENV === "production",
+              signed: true,
+              sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
               httpOnly: true,
             });
 
@@ -213,16 +213,12 @@ const handleForgotPassword = async (req, res) => {
 
         res.cookie("forgotToken", JSON.stringify(cookieValueObj), {
           maxAge: 3600000,
-          secure: process.env.NODE_ENV === "production", // Secure cookies for production
+          secure: process.env.NODE_ENV === "production",
           signed: true,
           sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", 
           httpOnly: true,
         });
 
-
-    
-     // Handle cross-origin in production
-  
 
 
 
