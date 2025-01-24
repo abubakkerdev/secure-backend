@@ -29,10 +29,7 @@ app.use(cookieParser(cookieSecretKey));
 
 const io = socketIo(server, {
   cors: {
-    origin: [
-      "https://jomaas-admin-panel.vercel.app",
-      "https://deeplearndl.vercel.app",
-    ],
+    origin: ["https://deeplearndl.vercel.app"],
   },
 });
 

@@ -215,12 +215,9 @@ const handleForgotPassword = async (req, res) => {
           maxAge: 3600000,
           secure: process.env.NODE_ENV === "production",
           signed: true,
-          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", 
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
           httpOnly: true,
         });
-
-
-
 
         let emailFrom = "Change Password URL";
         let emailSubject = "Verify Email Address";
